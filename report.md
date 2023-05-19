@@ -18,16 +18,15 @@ Due : 19 / 05 / 2023
   - [3. Standard CUDA Implementation](#3-standard-cuda-implementation)
   - [4. Tiled CUDA Implementation](#4-tiled-cuda-implementation)
 - [III - Code](#iii---code)
-- [Performance \& Evaluation](#performance--evaluation)
+- [IV - Performance \& Evaluation](#iv---performance--evaluation)
   - [1. Environment](#1-environment)
   - [2. Runtime](#2-runtime)
     - [Serial Time](#serial-time)
     - [CUDA](#cuda)
     - [Tiled CUDA](#tiled-cuda)
   - [3. Speedup](#3-speedup)
-  - [4. Efficiency](#4-efficiency)
-- [IV - Comparison](#iv---comparison)
-- [V - Discussion \& Conclusion](#v---discussion--conclusion)
+- [V - Comparison](#v---comparison)
+- [VI - Discussion \& Conclusion](#vi---discussion--conclusion)
 
 
 # I - Introduction
@@ -90,13 +89,14 @@ For this implementation, I try to load in the important parts of the program dat
 The approach is to divide the matrices into strips that will be assigned to thread-blocks, inside which each thread will handle a single row and column to compute a single value in the output matrix.
 
 # III - Code
-The code for all the implementations can be found [here]()
+The code for all the implementations can be found [here](https://github.com/jalal-elzein/Matrix-Multiplication-GPU-Parallelization)
 
-# Performance & Evaluation
+# IV - Performance & Evaluation
 ## 1. Environment
 All code was ran on Google machines using [Google Colab](https://colab.research.google.com) 
 
 The code ran with a T4 GPU runtime
+
 ## 2. Runtime
 ### Serial Time
 Run # | Time (ms)
@@ -140,11 +140,23 @@ Run # | Time (ms)
 9 | 9.40848 
 10 | 9.53949 
 Average | 9.472086
+
+![](3way.png)
+
 ## 3. Speedup
+Speedup Factor $S(p) = \frac{t_s}{t_p}$  
 
-## 4. Efficiency
+For the regular CUDA implementation, $S(p) = \frac{18425.7}{12.20835} = 1,509.27$  
 
-# IV - Comparison
+For the Tiled CUDA implementation, $S(p) = \frac{18425.7}{9.472086} = 1,945.263$  
 
-# V - Discussion & Conclusion
+# V - Comparison
+The tiled version of the matrix multiplication algorithm demonstrated improved performance compared to the non-tiled version. By dividing the matrices into smaller tiles and performing computations on these tiles, the tiled version optimized memory access patterns and reduced memory latency. This optimization strategy allowed for better data reuse, as each thread in the block accessed a small portion of the matrices repeatedly, reducing the need to fetch data from global memory. Additionally, the use of shared memory in the tiled version further improved performance by providing a fast on-chip memory space that could be accessed by all threads in a block. By leveraging shared memory, the tiled version minimized memory access conflicts and improved overall memory throughput. As a result, the tiled version achieved a higher speedup factor and demonstrated better scalability, making it a more efficient and effective approach for matrix multiplication on CUDA-enabled GPUs.
+![](tiledvsno.png)
 
+# VI - Discussion & Conclusion
+In this assignment, we implemented a matrix multiplication algorithm using CUDA and compared its performance with a serial implementation. We also introduced a tiled version of the CUDA implementation to further optimize the execution.
+
+Our benchmarking results showed significant speedup factors for both the CUDA implementation and the tiled version compared to the serial implementation. The CUDA implementation achieved a speedup factor of 1500, while the tiled version achieved a speedup factor of 1900. These results indicate the effectiveness of parallelization using CUDA in accelerating matrix multiplication.
+
+In conclusion, the CUDA implementation and the tiled version demonstrated significant speedup factors compared to the serial implementation, showcasing the power of parallel computing for matrix multiplication. These results highlight the potential for GPU acceleration in compute-intensive applications and underline the importance of optimizing memory access patterns and utilizing shared memory for improved performance. The assignment provided valuable hands-on experience with parallel programming using CUDA and showcased the performance gains achievable through parallelization.

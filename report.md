@@ -5,6 +5,30 @@ Jalal El Zein - 202105966
 Due : 19 / 05 / 2023  
 
 # Table of Contents
+- [Table of Contents](#table-of-contents)
+- [I - Introduction](#i---introduction)
+  - [1. What is a Matrix?](#1-what-is-a-matrix)
+  - [2. What is Matrix Multiplication?](#2-what-is-matrix-multiplication)
+    - [a. When Can We Multiply Matrices?](#a-when-can-we-multiply-matrices)
+    - [b. Product of Matrix Multiplication](#b-product-of-matrix-multiplication)
+  - [3. Why Parallelize Matrix Multiplication](#3-why-parallelize-matrix-multiplication)
+- [II - Parallelization](#ii---parallelization)
+  - [1. Sequential Implementation](#1-sequential-implementation)
+  - [2. General Strategy](#2-general-strategy)
+  - [3. Standard CUDA Implementation](#3-standard-cuda-implementation)
+  - [4. Tiled CUDA Implementation](#4-tiled-cuda-implementation)
+- [III - Code](#iii---code)
+- [Performance \& Evaluation](#performance--evaluation)
+  - [1. Environment](#1-environment)
+  - [2. Runtime](#2-runtime)
+    - [Serial Time](#serial-time)
+    - [CUDA](#cuda)
+    - [Tiled CUDA](#tiled-cuda)
+  - [3. Speedup](#3-speedup)
+  - [4. Efficiency](#4-efficiency)
+- [IV - Comparison](#iv---comparison)
+- [V - Discussion \& Conclusion](#v---discussion--conclusion)
+
 
 # I - Introduction
 
